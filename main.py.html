@@ -1,0 +1,308 @@
+<html>
+<head>
+<title>main.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #808080;}
+.s3 { color: #6a8759;}
+.s4 { color: #6897bb;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+main.py</font>
+</center></td></tr></table>
+<pre><span class="s0">import </span><span class="s1">datetime</span>
+<span class="s2">#creates dentalcompany class that has add branches function and getter as well</span>
+<span class="s0">class </span><span class="s1">DentalCompany:</span>
+    <span class="s0">def </span><span class="s1">__init__(self</span><span class="s0">,</span><span class="s1">name):</span>
+        <span class="s1">self.name = name</span>
+        <span class="s1">self._branches = []</span>
+
+    <span class="s0">def </span><span class="s1">add_branches(self</span><span class="s0">,</span><span class="s1">branch):</span>
+        <span class="s1">self._branches.append(branch)</span>
+
+    <span class="s0">def </span><span class="s1">getBranches(self):</span>
+        <span class="s0">return </span><span class="s1">self._branches</span>
+
+    <span class="s0">def </span><span class="s1">__str__(self):</span>
+        <span class="s0">return </span><span class="s3">f&quot;</span><span class="s0">{</span><span class="s1">self.name</span><span class="s0">}</span><span class="s3">&quot;</span>
+
+<span class="s2">#creates dentalBranch class that has setters adn getters and functions to add patients,services,staff, and to caculate total amount and print receipt</span>
+<span class="s0">class </span><span class="s1">DentalBranch:</span>
+    <span class="s0">def </span><span class="s1">__init__(self</span><span class="s0">,</span><span class="s1">address</span><span class="s0">,</span><span class="s1">phoneNumber</span><span class="s0">,</span><span class="s1">manager):</span>
+        <span class="s1">self.address = address</span>
+        <span class="s1">self.phoneNumber = phoneNumber</span>
+        <span class="s1">self.manager = manager</span>
+        <span class="s1">self.services = []</span>
+        <span class="s1">self.patients  = []</span>
+        <span class="s1">self.staff = []</span>
+
+    <span class="s0">def </span><span class="s1">setAddress(self</span><span class="s0">,</span><span class="s1">address):</span>
+        <span class="s1">self.address = address</span>
+    <span class="s0">def </span><span class="s1">getAddress(self):</span>
+        <span class="s0">return </span><span class="s1">self.address</span>
+    <span class="s0">def </span><span class="s1">setPhoneNumber(self</span><span class="s0">,</span><span class="s1">phoneNumber):</span>
+        <span class="s1">self.phoneNumber = phoneNumber</span>
+    <span class="s0">def </span><span class="s1">getPhoneNumber(self):</span>
+        <span class="s0">return </span><span class="s1">self.phoneNumber</span>
+    <span class="s0">def </span><span class="s1">setManager(self</span><span class="s0">,</span><span class="s1">manager):</span>
+        <span class="s1">self.manager = manager</span>
+    <span class="s0">def </span><span class="s1">getManager(self):</span>
+        <span class="s0">return </span><span class="s1">self.manager</span>
+    <span class="s0">def </span><span class="s1">setServices(self</span><span class="s0">,</span><span class="s1">services):</span>
+        <span class="s1">self.services = services</span>
+    <span class="s0">def </span><span class="s1">getServices(self):</span>
+        <span class="s0">return </span><span class="s1">self.services</span>
+
+    <span class="s0">def </span><span class="s1">addServices(self</span><span class="s0">,</span><span class="s1">service):</span>
+        <span class="s1">self.services.append(service)</span>
+
+    <span class="s0">def </span><span class="s1">addPatients(self</span><span class="s0">,</span><span class="s1">patient):</span>
+        <span class="s1">self.patients.append(patient)</span>
+    <span class="s0">def </span><span class="s1">getPatients(self):</span>
+        <span class="s0">return </span><span class="s1">self.patients</span>
+
+    <span class="s0">def </span><span class="s1">addStaff(self</span><span class="s0">, </span><span class="s1">staff):</span>
+        <span class="s1">self.staff.append(staff)</span>
+
+    <span class="s0">def </span><span class="s1">getStaff(self):</span>
+        <span class="s0">return </span><span class="s1">self.staff</span>
+    <span class="s0">def </span><span class="s1">payment(self</span><span class="s0">,</span><span class="s1">services):</span>
+        <span class="s1">totalCost = </span><span class="s4">0</span>
+        <span class="s0">for </span><span class="s1">service </span><span class="s0">in </span><span class="s1">services:</span>
+            <span class="s1">totalCost += service.serviceCost</span>
+        <span class="s1">tax = </span><span class="s4">0.05</span><span class="s1">*totalCost</span>
+        <span class="s1">totalCost += tax</span>
+        <span class="s1">print(</span><span class="s3">f&quot;Patinet: </span><span class="s0">{</span><span class="s1">patient.patientName</span><span class="s0">}</span><span class="s3">&quot;</span><span class="s1">)</span>
+        <span class="s1">print(</span><span class="s3">f&quot;Services Provided: </span><span class="s0">{</span><span class="s1">service.serviceName</span><span class="s0">}</span><span class="s3">&quot;</span><span class="s1">)</span>
+        <span class="s1">print(</span><span class="s3">f&quot;Services Cost:</span><span class="s0">{</span><span class="s1">service.serviceCost</span><span class="s0">}</span><span class="s3">&quot;</span><span class="s1">)</span>
+        <span class="s1">print(</span><span class="s3">f&quot;Tax:</span><span class="s0">{</span><span class="s1">tax</span><span class="s0">}</span><span class="s3">&quot;</span><span class="s1">)</span>
+        <span class="s1">print(</span><span class="s3">f&quot;Final Amount:</span><span class="s0">{</span><span class="s1">totalCost</span><span class="s0">}</span><span class="s3">&quot;</span><span class="s1">)</span>
+
+
+<span class="s2">#creates dentalservice class that has setters and getters,string function to print all information</span>
+<span class="s0">class </span><span class="s1">DentalService:</span>
+    <span class="s0">def </span><span class="s1">__init__(self</span><span class="s0">,</span><span class="s1">serviceName</span><span class="s0">,</span><span class="s1">serviceID</span><span class="s0">,</span><span class="s1">serviceCost):</span>
+        <span class="s1">self.serviceName = serviceName</span>
+        <span class="s1">self.serviceID = serviceID</span>
+        <span class="s1">self.serviceCost = serviceCost</span>
+    <span class="s0">def </span><span class="s1">setServiceName(self</span><span class="s0">,</span><span class="s1">serviceName):</span>
+        <span class="s1">self.serviceName = serviceName</span>
+    <span class="s0">def </span><span class="s1">getServiceName(self):</span>
+        <span class="s0">return </span><span class="s1">self.serviceName</span>
+    <span class="s0">def </span><span class="s1">setServiceID(self</span><span class="s0">,</span><span class="s1">serviceID):</span>
+        <span class="s1">self.serviceID = serviceID</span>
+    <span class="s0">def </span><span class="s1">getServiceID(self):</span>
+        <span class="s0">return </span><span class="s1">self.serviceID</span>
+    <span class="s0">def </span><span class="s1">setServiceCost(self</span><span class="s0">,</span><span class="s1">serviceCost):</span>
+        <span class="s1">self.serviceCost = serviceCost</span>
+    <span class="s0">def </span><span class="s1">getServiceCost(self):</span>
+        <span class="s0">return </span><span class="s1">self.serviceCost</span>
+    <span class="s0">def </span><span class="s1">__str__(self):</span>
+        <span class="s0">return </span><span class="s3">f&quot;</span><span class="s0">{</span><span class="s1">self.serviceName</span><span class="s0">}</span><span class="s3">:</span><span class="s0">{</span><span class="s1">self.serviceCost</span><span class="s0">}</span><span class="s3">&quot;</span>
+
+
+
+
+<span class="s2">#creates patient class that has setters and getter, book or cancel appointment</span>
+<span class="s0">class </span><span class="s1">Patient:</span>
+    <span class="s0">def </span><span class="s1">__init__(self</span><span class="s0">,</span><span class="s1">patientName</span><span class="s0">, </span><span class="s1">patientID</span><span class="s0">,</span><span class="s1">phoneNumber):</span>
+        <span class="s1">self.patientName = patientName</span>
+        <span class="s1">self.patientID = patientID</span>
+        <span class="s1">self.phoneNumber = phoneNumber</span>
+        <span class="s1">self.appointments = []</span>
+
+    <span class="s0">def </span><span class="s1">setPatientName(self</span><span class="s0">,</span><span class="s1">patientName):</span>
+        <span class="s1">self.patientName = patientName</span>
+
+    <span class="s0">def </span><span class="s1">getPatientName(self):</span>
+        <span class="s0">return </span><span class="s1">self.patientName</span>
+
+    <span class="s0">def </span><span class="s1">setPatientID(self</span><span class="s0">,</span><span class="s1">patientID):</span>
+        <span class="s1">self.patientID = patientID</span>
+
+    <span class="s0">def </span><span class="s1">getPatientID(self):</span>
+        <span class="s0">return </span><span class="s1">self.patientID</span>
+
+    <span class="s0">def </span><span class="s1">setPhoneNumber(self</span><span class="s0">,</span><span class="s1">phoneNumber):</span>
+        <span class="s1">self.phoneNumber = phoneNumber</span>
+
+    <span class="s0">def </span><span class="s1">getPhoneNumber(self):</span>
+        <span class="s0">return </span><span class="s1">self.phoneNumber</span>
+
+    <span class="s0">def </span><span class="s1">bookAppointment(self</span><span class="s0">,</span><span class="s1">appointment):</span>
+        <span class="s1">self.appointments.append(appointment)</span>
+
+    <span class="s0">def </span><span class="s1">cancelAppointment(self</span><span class="s0">, </span><span class="s1">appointment):</span>
+        <span class="s1">self.appointments.remove(appointment)</span>
+
+    <span class="s0">def </span><span class="s1">getAppointment(self):</span>
+        <span class="s0">return </span><span class="s1">self.appointments</span>
+
+
+
+<span class="s2">#creates staff class that has setters and getters</span>
+<span class="s0">class </span><span class="s1">Staff:</span>
+    <span class="s0">def </span><span class="s1">__init__(self</span><span class="s0">,</span><span class="s1">staffName</span><span class="s0">, </span><span class="s1">staffID</span><span class="s0">,</span><span class="s1">staffEmail):</span>
+        <span class="s1">self.staffName = staffName</span>
+        <span class="s1">self.staffID = staffID</span>
+        <span class="s1">self.staffEmail = staffEmail</span>
+
+    <span class="s0">def </span><span class="s1">setStaffName(self</span><span class="s0">,</span><span class="s1">staffName):</span>
+        <span class="s1">self.staffName = staffName</span>
+    <span class="s0">def </span><span class="s1">getStaffName(self):</span>
+        <span class="s0">return </span><span class="s1">self.staffName</span>
+
+    <span class="s0">def </span><span class="s1">setStaffID(self):</span>
+        <span class="s1">self.staffID = staffID</span>
+    <span class="s0">def </span><span class="s1">getStaffID(self):</span>
+        <span class="s0">return </span><span class="s1">self.staffID</span>
+
+    <span class="s0">def </span><span class="s1">setStaffEmail(self</span><span class="s0">,</span><span class="s1">staffEmail):</span>
+        <span class="s1">self.staffEmail= staffEmail</span>
+    <span class="s0">def </span><span class="s1">getStaffEmail(self):</span>
+        <span class="s0">return </span><span class="s1">self.staffEmail</span>
+
+
+<span class="s2">#manager class inherits from staff class and has an additional attribute</span>
+<span class="s0">class </span><span class="s1">Manager(Staff):</span>
+    <span class="s0">def </span><span class="s1">__init__(self</span><span class="s0">,</span><span class="s1">staffName</span><span class="s0">, </span><span class="s1">staffID</span><span class="s0">,</span><span class="s1">staffEmail</span><span class="s0">,</span><span class="s1">department):</span>
+        <span class="s1">super().__init__(staffName</span><span class="s0">, </span><span class="s1">staffID</span><span class="s0">,</span><span class="s1">staffEmail)</span>
+        <span class="s1">self.department = department</span>
+    <span class="s0">def </span><span class="s1">setDepartment(self</span><span class="s0">,</span><span class="s1">department):</span>
+        <span class="s1">self.department = department</span>
+    <span class="s0">def </span><span class="s1">getDepartment(self</span><span class="s0">,</span><span class="s1">department):</span>
+        <span class="s0">return </span><span class="s1">self.department</span>
+
+
+
+<span class="s2">#Receptionist class inherits from staff class and has an additional attribute</span>
+
+<span class="s0">class </span><span class="s1">Receptionist(Staff):</span>
+    <span class="s0">def </span><span class="s1">__init__(self</span><span class="s0">,</span><span class="s1">staffName</span><span class="s0">, </span><span class="s1">staffID</span><span class="s0">,</span><span class="s1">staffEmail</span><span class="s0">,</span><span class="s1">workHours):</span>
+        <span class="s1">super().__init__(staffName</span><span class="s0">, </span><span class="s1">staffID</span><span class="s0">,</span><span class="s1">staffEmail)</span>
+        <span class="s1">self.workHours = workHours</span>
+    <span class="s0">def </span><span class="s1">setWorkHours(self</span><span class="s0">,</span><span class="s1">workHours):</span>
+        <span class="s1">self.workHours = workHours</span>
+    <span class="s0">def </span><span class="s1">getWorkHours(self):</span>
+        <span class="s0">return </span><span class="s1">self.workHours</span>
+
+
+
+<span class="s2">#Hygienist class inherits from staff class and has an additional attribute</span>
+
+<span class="s0">class </span><span class="s1">Hygienist(Staff):</span>
+    <span class="s0">def </span><span class="s1">__init__(self</span><span class="s0">,</span><span class="s1">staffName</span><span class="s0">, </span><span class="s1">staffID</span><span class="s0">,</span><span class="s1">staffEmail</span><span class="s0">,</span><span class="s1">yearsOfExperience):</span>
+        <span class="s1">super().__init__(staffName</span><span class="s0">, </span><span class="s1">staffID</span><span class="s0">,</span><span class="s1">staffEmail)</span>
+        <span class="s1">self.yearsOfExperience = yearsOfExperience</span>
+    <span class="s0">def </span><span class="s1">setYearsOfExperience(self</span><span class="s0">,</span><span class="s1">yearsOfExperience):</span>
+        <span class="s1">self.yearsOfExperience = yearsOfExperience</span>
+    <span class="s0">def </span><span class="s1">getYearsOfExperience(self):</span>
+        <span class="s0">return </span><span class="s1">self.yearsOfExperience</span>
+
+
+<span class="s2">#dentist class inherits from staff class and has an additional attribute</span>
+
+<span class="s0">class </span><span class="s1">Dentist(Staff):</span>
+    <span class="s0">def </span><span class="s1">__init__(self</span><span class="s0">,</span><span class="s1">staffName</span><span class="s0">, </span><span class="s1">staffID</span><span class="s0">,</span><span class="s1">staffEmail</span><span class="s0">,</span><span class="s1">yearsOfExperience):</span>
+        <span class="s1">super().__init__(staffName</span><span class="s0">, </span><span class="s1">staffID</span><span class="s0">,</span><span class="s1">staffEmail)</span>
+        <span class="s1">self.yearsOfExperience = yearsOfExperience</span>
+    <span class="s0">def </span><span class="s1">setYearsOfExperience(self</span><span class="s0">, </span><span class="s1">yearsOfExperience):</span>
+        <span class="s1">self.yearsOfExperience = yearsOfExperience</span>
+    <span class="s0">def </span><span class="s1">getYearsOfExperience(self):</span>
+        <span class="s0">return </span><span class="s1">self.yearsOfExperience</span>
+
+
+
+
+<span class="s2">#Appointemnt class that accesses objects created from different classes, has setters and getters , string function to display appointment information</span>
+<span class="s0">class </span><span class="s1">Appointment:</span>
+    <span class="s0">def </span><span class="s1">__init__(self</span><span class="s0">,</span><span class="s1">patient:Patient</span><span class="s0">,</span><span class="s1">date</span><span class="s0">,</span><span class="s1">dentist:Dentist</span><span class="s0">, </span><span class="s1">service:DentalService):</span>
+        <span class="s1">self.patient = patient</span>
+        <span class="s1">self.date = date</span>
+        <span class="s1">self.dentist = dentist</span>
+        <span class="s1">self.service = service</span>
+
+    <span class="s0">def </span><span class="s1">setPatient(self</span><span class="s0">,</span><span class="s1">patient):</span>
+        <span class="s1">self.patient = patient</span>
+    <span class="s0">def </span><span class="s1">getPatient(self):</span>
+        <span class="s0">return </span><span class="s1">self.patient</span>
+    <span class="s0">def </span><span class="s1">setDate(self</span><span class="s0">,</span><span class="s1">date):</span>
+        <span class="s1">self.date = date</span>
+    <span class="s0">def </span><span class="s1">getDate(self):</span>
+        <span class="s0">return </span><span class="s1">self.date</span>
+    <span class="s0">def </span><span class="s1">setDentist(self</span><span class="s0">,</span><span class="s1">dentist):</span>
+        <span class="s1">self.dentist = dentist</span>
+    <span class="s0">def </span><span class="s1">getDentist(self):</span>
+        <span class="s0">return </span><span class="s1">self.dentist</span>
+    <span class="s0">def </span><span class="s1">setService(self</span><span class="s0">,</span><span class="s1">service):</span>
+        <span class="s1">self.service = service</span>
+    <span class="s0">def </span><span class="s1">getService(self):</span>
+        <span class="s0">return </span><span class="s1">self.service</span>
+
+    <span class="s0">def </span><span class="s1">__str__(self):</span>
+        <span class="s0">return </span><span class="s3">f&quot;Appointment confirmed for patient </span><span class="s0">{</span><span class="s1">self.patient.getPatientName()</span><span class="s0">} </span><span class="s3">on </span><span class="s0">{</span><span class="s1">self.date</span><span class="s0">} </span><span class="s3">with Dr. </span><span class="s0">{</span><span class="s1">self.dentist.getStaffName()</span><span class="s0">} </span><span class="s3">for </span><span class="s0">{</span><span class="s1">self.service.getServiceName()</span><span class="s0">}</span><span class="s3">.&quot;</span>
+
+
+<span class="s2">#Test cases to show how this software is functioning</span>
+<span class="s2">#this tests for adding services to a branch and printing the services information</span>
+<span class="s1">service1 = DentalService(</span><span class="s3">&quot;Teeth Crown&quot;</span><span class="s0">,</span><span class="s3">&quot;123-A&quot;</span><span class="s0">,</span><span class="s4">4000</span><span class="s1">)</span>
+<span class="s1">service2 = DentalService(</span><span class="s3">&quot;Cleaning&quot;</span><span class="s0">,</span><span class="s3">&quot;140-B&quot;</span><span class="s0">,</span><span class="s4">1500</span><span class="s1">)</span>
+<span class="s1">branch1 = DentalBranch(</span><span class="s3">&quot;Jumeira&quot;</span><span class="s0">,</span><span class="s3">&quot;04-203-978&quot;</span><span class="s0">,</span><span class="s3">&quot;John&quot;</span><span class="s1">)</span>
+<span class="s1">branch1.addServices(service1)</span>
+<span class="s1">branch1.addServices(service2)</span>
+<span class="s1">services = branch1.getServices()</span>
+<span class="s0">for </span><span class="s1">service </span><span class="s0">in </span><span class="s1">services:</span>
+    <span class="s1">print(</span><span class="s3">f&quot;Service Name:&quot;</span><span class="s0">,</span><span class="s1">service.serviceName)</span>
+    <span class="s1">print(</span><span class="s3">f&quot;Service ID:&quot;</span><span class="s0">,</span><span class="s1">service.serviceID)</span>
+    <span class="s1">print(</span><span class="s3">f&quot;Service Cost:&quot;</span><span class="s0">,</span><span class="s1">service.serviceCost)</span>
+<span class="s2">#checks if the code passes</span>
+<span class="s0">assert </span><span class="s1">service1 </span><span class="s0">and </span><span class="s1">service2 </span><span class="s0">in </span><span class="s1">branch1.getServices()</span>
+
+<span class="s2">#this test for the addition of patients to the branch</span>
+<span class="s1">patient1 = Patient(</span><span class="s3">&quot;Moza Al Falasi&quot;</span><span class="s0">,</span><span class="s3">&quot;14132&quot;</span><span class="s0">,</span><span class="s3">&quot;+971504244512&quot;</span><span class="s1">)</span>
+<span class="s1">patient2 = Patient(</span><span class="s3">&quot;Reem Ahmad&quot;</span><span class="s0">,</span><span class="s3">&quot;14512&quot;</span><span class="s0">,</span><span class="s3">&quot;+971551055432&quot;</span><span class="s1">)</span>
+<span class="s1">branch1.addPatients(patient1)</span>
+<span class="s1">branch1.addPatients(patient2)</span>
+<span class="s1">added_patients = branch1.getPatients()</span>
+<span class="s0">for </span><span class="s1">patient </span><span class="s0">in </span><span class="s1">added_patients:</span>
+    <span class="s1">print(</span><span class="s3">f&quot;Patient Name:&quot;</span><span class="s0">,</span><span class="s1">patient.patientName)</span>
+    <span class="s1">print(</span><span class="s3">f&quot;Patient ID:&quot;</span><span class="s0">,</span><span class="s1">patient.patientID)</span>
+    <span class="s1">print(</span><span class="s3">f&quot;Patient Phone Number:&quot;</span><span class="s0">,</span><span class="s1">patient.phoneNumber)</span>
+<span class="s0">assert </span><span class="s1">patient1 </span><span class="s0">and </span><span class="s1">patient2 </span><span class="s0">in </span><span class="s1">branch1.getPatients()</span>
+<span class="s2">#this tests for the addition of staff to the branch</span>
+<span class="s1">manager1 = Manager(</span><span class="s3">&quot;Maya Johns&quot;</span><span class="s0">,</span><span class="s3">&quot;789012&quot;</span><span class="s0">,</span><span class="s3">&quot;mayaJohns@gmail.com&quot;</span><span class="s0">,</span><span class="s3">&quot;Operations&quot;</span><span class="s1">)</span>
+<span class="s1">receptionist1 = Receptionist(</span><span class="s3">&quot;Caroline Roberts&quot;</span><span class="s0">,</span><span class="s3">&quot;345678&quot;</span><span class="s0">,</span><span class="s3">&quot;carolineroberts@gmail.com&quot;</span><span class="s0">,</span><span class="s3">&quot;7:00-3:00&quot;</span><span class="s1">)</span>
+<span class="s1">hygientist1 = Hygienist(</span><span class="s3">&quot;Martha Stewart&quot;</span><span class="s0">,</span><span class="s3">&quot;482145&quot;</span><span class="s0">,</span><span class="s3">&quot;marthastewart@gmail.com&quot;</span><span class="s0">,</span><span class="s4">5</span><span class="s1">)</span>
+<span class="s1">dentist1 = Dentist(</span><span class="s3">&quot;Dr.Mike Felix&quot;</span><span class="s0">, </span><span class="s3">&quot;983124&quot;</span><span class="s0">,</span><span class="s3">&quot;Drmike@gmail.com&quot;</span><span class="s0">,</span><span class="s4">15</span><span class="s1">)</span>
+<span class="s1">branch1.addStaff(manager1)</span>
+<span class="s1">branch1.addStaff(receptionist1)</span>
+<span class="s1">branch1.addStaff(hygientist1)</span>
+<span class="s1">branch1.addStaff(dentist1)</span>
+<span class="s0">assert </span><span class="s1">manager1 </span><span class="s0">and </span><span class="s1">receptionist1 </span><span class="s0">and </span><span class="s1">hygientist1 </span><span class="s0">and </span><span class="s1">dentist1 </span><span class="s0">in </span><span class="s1">branch1.getStaff()</span>
+
+<span class="s2">#this test for the addition of patients booking appointments</span>
+<span class="s1">date1 = datetime.datetime(</span><span class="s4">2023</span><span class="s0">,</span><span class="s4">4</span><span class="s0">,</span><span class="s4">15</span><span class="s0">,</span><span class="s4">14</span><span class="s0">,</span><span class="s4">30</span><span class="s1">)</span>
+<span class="s1">date2 = datetime.datetime(</span><span class="s4">2023</span><span class="s0">,</span><span class="s4">4</span><span class="s0">,</span><span class="s4">20</span><span class="s0">,</span><span class="s4">9</span><span class="s0">,</span><span class="s4">30</span><span class="s1">)</span>
+<span class="s1">appointment1 = Appointment(patient1</span><span class="s0">,</span><span class="s1">date1</span><span class="s0">,</span><span class="s1">dentist1</span><span class="s0">,</span><span class="s1">service1)</span>
+<span class="s1">appointment2 = Appointment(patient2</span><span class="s0">,</span><span class="s1">date2</span><span class="s0">,</span><span class="s1">dentist1</span><span class="s0">,</span><span class="s1">service2)</span>
+<span class="s1">patient1.bookAppointment(appointment1)</span>
+<span class="s1">patient2.bookAppointment(appointment2)</span>
+<span class="s0">assert </span><span class="s1">appointment1 </span><span class="s0">in </span><span class="s1">patient1.getAppointment()</span>
+<span class="s1">print(appointment1.__str__())</span>
+<span class="s1">print(appointment2.__str__())</span>
+
+<span class="s2">#this displays payment receipts for patient services (one or more) upon checking out</span>
+<span class="s1">receipt = branch1.payment([service2])</span>
+<span class="s1">print(receipt)</span>
+
+
+
+</pre>
+</body>
+</html>
